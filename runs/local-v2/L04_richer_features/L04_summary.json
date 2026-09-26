@@ -1,0 +1,57 @@
+{
+  "n_features": 38,
+  "mean_trees": 466,
+  "clean_b0_ref_f05": 0.9045857751216889,
+  "country_dual_b0_ref_f05": 0.9067743787310397,
+  "l04_screen_f05": 0.9109863836949071,
+  "l04_india_f05": 0.8822900598674821,
+  "l04_us_f05": 0.939682707522332,
+  "delta_vs_b0": 0.006400608573218086,
+  "ci_95": [
+    0.0012165953643427938,
+    0.01170596264213702
+  ],
+  "top_features": [
+    {
+      "feature": "rrf_score",
+      "importance_gain": 1406292.3073350636
+    },
+    {
+      "feature": "candidate_rank",
+      "importance_gain": 764913.5196785652
+    },
+    {
+      "feature": "recip_rank_addr",
+      "importance_gain": 148262.6864733415
+    },
+    {
+      "feature": "addr_word_jac",
+      "importance_gain": 135860.11007034514
+    },
+    {
+      "feature": "name_partial",
+      "importance_gain": 119700.58488160175
+    },
+    {
+      "feature": "house_conflict",
+      "importance_gain": 114349.46391811229
+    },
+    {
+      "feature": "house_equal",
+      "importance_gain": 106699.09945592827
+    },
+    {
+      "feature": "addr_set",
+      "importance_gain": 74157.16695891095
+    },
+    {
+      "feature": "name_len_ratio",
+      "importance_gain": 73136.04283616669
+    },
+    {
+      "feature": "name_sort",
+      "importance_gain": 64540.494324322615
+    }
+  ],
+  "total_execution_time_s": 2990.1486120224
+}

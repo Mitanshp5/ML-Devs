@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-09-27 01:39:37",
+  "model_type": "LightGBM GBDT (127 leaves, depth 9, 466 trees)",
+  "features_version": "FEATURES_V3",
+  "n_features": 38,
+  "calibration_set": "calibration_5k (5,000 queries)",
+  "training_set": "train_12k (12,000 queries, 1.2M pairs, 39,919 matches)",
+  "verified_metrics": {
+    "screen_2k_macro_f05": 0.912044,
+    "screen_2k_india_f05": 0.884169,
+    "screen_2k_us_f05": 0.93992,
+    "delta_vs_b0_baseline": "+0.007459",
+    "delta_95_ci": [
+      0.002362,
+      0.012808
+    ]
+  },
+  "artifacts_sha256": {
+    "production_matcher.txt": "62a2dba2388e8089daf84e17e86e6cdc0f3bc20fbc5ea2eace18870e80e6039c",
+    "feature_schema.json": "c5c12c96da534eb343daa2b5b2732e82ee88488b40482901601af687d3c5810c",
+    "decision_policy.json": "d9806b1a88a2af3276188e63089c3aaddebd4d833eff6f6f84190cc822e6b5f4"
+  },
+  "routing_policy": {
+    "India": "country_dual / calibrated thresholds",
+    "US": "country_dual / calibrated thresholds",
+    "France": "global fallback (ts=0.70, tm=0.70)",
+    "Other": "global fallback"
+  }
+}
