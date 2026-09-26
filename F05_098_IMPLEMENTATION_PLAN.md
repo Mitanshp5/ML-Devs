@@ -1,5 +1,7 @@
 # Amazon ML Challenge: implementation plan to maximize verified macro F0.5
 
+> **27 September 2026 authority update:** follow [NEXT_IMPROVEMENT_PLAN.md](NEXT_IMPROVEMENT_PLAN.md) for the current local/optional-A100 experiment queue and [the new audit](reports/dev_probe/F05_NEXT_ITERATION_AUDIT_2026-09-27.md) for verified progress. This document retains historical analysis and challenge-contract references; old score targets, current-status claims and execution priorities below are superseded.
+
 > **Active execution plan:** [LOCAL_COLAB_IMPLEMENTATION_PLAN.md](LOCAL_COLAB_IMPLEMENTATION_PLAN.md). All required work now runs on this device; optional GPU-intensive experiments can run in parallel on [Colab A100](reports/experiments/COLAB_A100_RUNBOOK.md). The Mac/RTX assignments and old numeric promotion floors below are superseded. Current artifact verification confirms that keyed training pairs and partitioned texts are complete; that earlier blocker is resolved.
 
 > **Current objective, revised by the user on 26 September 2026:** maximize reliable F0.5 with the available resources; **0.98 is no longer an acceptance gate**. The latest [maximization review and execution order](reports/dev_probe/F05_MAXIMIZATION_REVIEW.md) supersedes the numerical score/oracle floors and priority order in older sections below. Keep this filename for existing links; historical measurements remain preserved.

@@ -1,0 +1,11 @@
+{
+  "model_name": "paraphrase-multilingual-MiniLM-L12-v2",
+  "sample_texts_benchmarked": 1000,
+  "measured_throughput_texts_per_sec": 245.62476725460664,
+  "total_unique_eval_texts": 607371,
+  "estimated_total_cpu_seconds": 2472.7595950062273,
+  "estimated_total_cpu_minutes": 41.212659916770455,
+  "fixture_off_diagonal_std": 0.2059776484966278,
+  "fixture_off_diagonal_mean": 0.33552542328834534,
+  "exceeds_1hr_threshold": false
+}

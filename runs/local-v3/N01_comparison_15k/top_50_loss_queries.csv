@@ -1,0 +1,51 @@
+query_id,country,business_name,business_address,ground_truth_count,predicted_count,true_positive_count,error_type,unretrieved_count,retrieved_rejected_count,query_gated_count,unretrieved_targets,rejected_targets
+S1-42434550,India,Galaxy Tech,"Flat No 605, Seetharaiah Towers, New Sastry Nagar, Erragadda, K.V.Rangareddy, 8-4-369/S/605, Balanagar, Telangana",2,0,0,false_negative,0,2,0,,S2-611650386;S3-398869182
+S1-947902019,US,"Stevens and Marks Cadenza, LLC","304 4th Street, Suffolk City, VA",1,0,0,false_negative,0,1,0,,S2-40284986
+S1-463828743,India,One Infotech Pvt Ltd,"Maharashtra, 36B, Mumbai City, Tamarind House, Tamarind Lane, Fort, Mumbai",5,0,0,false_negative,0,5,0,,S3-702550146;S3-690424405;S3-501973922
+S1-253908447,US,Letisha's Delta Brewing,"312 Mayfield Circle, Suisun City, CA",1,0,0,false_negative,0,1,0,,S2-996408646
+S1-140842563,India,Vision Media Private Limited,"Office No. 241, Green Palladia, Opp. Raj World Shopping Center, Surat City, Surat, Gujarat",1,0,0,false_negative,0,1,0,,S2-460274616
+S1-949019972,US,Primary Care Clinic Care,"2216 17th Place, Rogers, AR",3,0,0,false_negative,0,3,0,,S3-988064550;S2-90994196;S3-535767924
+S1-366159115,India,Sree Investment Private Limited,"Mumbai, Maharashtra, 10 599 Kapadia Chambersopp Parsi Agiyari J S S Road Marine Lines (E), Mumbai",0,1,0,false_positive,0,0,0,,
+S1-13740093,US,Cascade Program,"1639 13th Avenue, Huntington, WV",4,0,0,false_negative,2,2,0,S2-705649347;S2-977092354,S2-623875893;S3-625928154
+S1-547062323,India,New Sangh,"No.32, Abhiman Enclave, Top Floor, 11Th Main, Nobo Nagar, Bangalore South, Bangalore, Karnataka",0,1,0,false_positive,0,0,0,,
+S1-805674314,US,Culbertson Tribeca Inc,"7596 Warren Drive, Unit 202, Four Square Mile, CO",1,0,0,false_negative,0,1,0,,S2-895555596
+S1-794242159,India,United Food Limited,"Bj-20 East Shalimar Bagh, Below Icici Bank (Basement), Jhulelal Mandir Road, Delhi, North West Delhi, Delhi",2,0,0,false_negative,0,2,0,,S2-103663010;S2-721669213
+S1-995954617,India,Media Wavelength India Corp,"Shop No. 4, Jijai Plaza, S.No.54/4, Borate Farm, Pune City, Pune, Maharashtra",0,1,0,false_positive,0,0,0,,
+S1-313878172,US,Jackson Montessori School Group,"1847 Abbotsford Drive, Fairfax County, VA",3,0,0,false_negative,1,2,0,S2-401383278,S3-894000745;S3-688040769
+S1-733968467,US,"Johnson, Fink & Carroll LLC","1416 Ridge Run, Town Of St Joseph, WI",2,0,0,false_negative,0,2,0,,S2-694954004;S3-917983509
+S1-314399024,India,Jayesh & Co,"Ghasipura, Medical Road, Anandapur, C/O. Subrat Kumar Samal, Kendujhar, Orissa",1,0,0,false_negative,0,1,0,,S2-638173842
+S1-102850150,India,Real Investments Private Limited,"H No.- 149, Kedl Ballabh Bari Gumanpura B-Ii, Kota, Rajasthan",3,0,0,false_negative,2,1,0,S3-16080678;S2-336362969,S2-926313592
+S1-102552856,India,Apr Traders,"No.14/41, Anna Main Road, M.G.R Nagar, Chennai, Tamil Nadu",2,0,0,false_negative,0,2,0,,S2-45224406;S3-379142557
+S1-997314071,India,Laxmi Agro Private Limited,"35, Prahlad Marg, Shiv Colony, Moti Nagar, Jaipur, Rajasthan",4,0,0,false_negative,4,0,0,S3-989459147;S3-336691956;S2-155765643,
+S1-264179171,US,Regional Focus,"119 Staniak Road, Halfmoon, NY",2,0,0,false_negative,0,2,0,,S3-445507348;S2-151544087
+S1-795662773,India,Venkatesh International School Pvt Ltd,"R No 4 Lalapathan Chawlp M Road Khotwadi Santacruz West, Mumbai, Maharashtra",0,1,0,false_positive,0,0,0,,
+S1-502574894,India,Vaayuendra Data Limited,"Door No.3A, M.G.R. Nagar, 5Th Main Road Velacherry, Chennai, Tamil Nadu",0,1,0,false_positive,0,0,0,,
+S1-104485837,US,A Cure 2 All,"4222 Wentworth Avenue, Minneapolis, MN",1,0,0,false_negative,0,1,0,,S3-188208830
+S1-73903534,India,Shivam Infotech Private Limited,"2251/6, 1St Floor, Mandir, Wali Gali, Shadi Khampur, New Delhi, Central Delhi, Delhi",1,0,0,false_negative,0,1,0,,S2-506706395
+S1-24560631,India,Shree Exports Private Limited,"#17/1, Lalitha Arcade, Outer Ring Road Nagarabhavi 1St Block, 2Nd Stage, Bangalore, Karnataka",0,1,0,false_positive,0,0,0,,
+S1-740584901,India,Indo Consultants Private Limited,"52 H. No.13, 1133, At Post. Najam Colony, Osmanabad, Maharashtra",0,1,0,false_positive,0,0,0,,
+S1-815360840,US,"Hathcock, Grimsley and Grimm, Inc","1016 Gant Hill Drive, Unit 104, Nashville, TN",2,0,0,false_negative,1,1,0,S2-22984599,S3-289594507
+S1-817770308,India,Maa Construction,"Flat No.101, First Floor, Dagde Niwas, Bavdhan Bk. Tal. Mulshi, Pune, Maharashtra",2,0,0,false_negative,1,1,0,S2-788311982,S3-133863685
+S1-941048164,US,Wendell Total Xflh,"1945 Lakeshore Drive, Gadsden, AL",1,0,0,false_negative,0,1,0,,S3-263901953
+S1-606853522,India,RO Marketing Private Limited,"C/O Dayaram Dwivedi, Thok, Gahabar, Bisanda(Rural), Banda, Uttar Pradesh",0,1,0,false_positive,0,0,0,,
+S1-607031605,US,Blue Seafood Inc,"WI, 3702 Vista Circle, City Of Wausau",2,0,0,false_negative,1,1,0,S3-533941123,S3-135043754
+S1-60593084,India,Southern Gold Construction Pvt Ltd,"Plot No 536, Ayyappa Society, Madhapur, Khanamet, Hyderabad, Shaikpet, Hyderabad, Telangana",0,1,0,false_positive,0,0,0,,
+S1-998040525,US,Phillips Value Ses,"37 Topaz Lane, Inwood, WV",1,0,0,false_negative,0,1,0,,S3-323773677
+S1-79489962,India,Surya Software Pvt Ltd,"C/O Mohammedkutty Haji, Door No 10/210Bp, Kavilpadi, Ponani, Malappuram, Malapuram, Kerala",1,0,0,false_negative,0,1,0,,S2-321980335
+S1-187284558,India,City Infra Pvt Ltd,"Room No. 7, Building No. 27/306 F, Mps Tower Arayidathupalam, Opp. Federal Tower, Mav, Oor Road, Kozhikode, Kerala",2,0,0,false_negative,2,0,0,S3-530549006;S2-69258481,
+S1-187504523,US,Red Deli! Group,"806 Teaberry Lane, Unit 3, Knoxville, TN",5,1,0,false_positive,0,5,0,,S3-962583987;S3-689090552;S3-352086275
+S1-955920362,India,One Projects Private Limited,"C 8 / 2, Shree Krishna Society, Near Lad Society, Vastrapur, Ahmedabad, Gujarat",3,0,0,false_negative,3,0,0,S3-320714066;S2-708495340;S3-17151564,
+S1-473212870,India,Digital Developers Private Limited,"B- 404 Basundhara Gallexy, Golden Palm Niranjanpur, Vijay Nagar, Indore, Indore, Madhya Pradesh, India, Indore, Madhya Pradesh",1,0,0,false_negative,0,1,0,,S3-760553805
+S1-880782427,India,Rt Benefit Private Limited,"No.135, Dr.Besant Road Royapettah, Chennai, Tamil Nadu",2,0,0,false_negative,0,2,0,,S2-450380445;S3-550088029
+S1-884007166,US,"Loella Sua, M.D., PC","140 Beach Rd, Unit 2317, Ames, IA",0,1,0,false_positive,0,0,0,,
+S1-793131727,India,Guru Exports Pvt Ltd,"Mohali, Sco No. 131 Sector- 110, Punjab, T.D.I City",2,0,0,false_negative,1,1,0,S3-588726445,S2-629818089
+S1-242134264,US,4610 Fifth Place Holdings,"3855 Christiana Avenue, Chicago, IL",2,0,0,false_negative,0,2,0,,S2-46076987;S3-992887775
+S1-819916713,US,Jalomo Preparatory Academy,"260 Pittsfield Road, Unit 8D, Lenox, MA",0,1,0,false_positive,0,0,0,,
+S1-495503637,US,Chiropractic Coastal Group,"2726 Gallows Road, Unit STE 201, Fairfax County, VA",2,0,0,false_negative,0,2,0,,S2-929493686;S3-953987430
+S1-315767513,US,"Fort Wayne, County Of Associates","3001 Simcoe Drive, Fort Wayne, IN",2,0,0,false_negative,0,2,0,,S2-506431889;S2-565288891
+S1-316061153,India,Eastern Systems LLP,"No. 222 2Nd Floor, 80 Ft., Service Road 12Th Block, Bangalore North, Bangalore, Karnataka",2,0,0,false_negative,0,2,0,,S3-250920019;S2-783817521
+S1-731297579,India,Indian Foods Private Limited,"Nagpur, Aath Rasta, Square, Laxmi Nagar, Maharashtra, Plot No. J 9",1,1,0,false_positive,1,0,0,S3-57123129,
+S1-845187921,India,Vision Management Pvt Ltd,"Gala 3, Pearl Glass Compound, I. B. Patel Road, Near Puja Hotel, Goregaon East, Mumbai, Maharashtra",2,0,0,false_negative,1,1,0,S3-49774074,S3-71244665
+S1-539405233,US,Bennington Twp Wireless,"3956 Riley Road, Bennington Twp, OH",0,1,0,false_positive,0,0,0,,
+S1-877646758,India,Mumbai Health LLP,"D 263, Office No.603 Akshar Blue Chip, Turbhe, Naka Midc, Mumbai, Mumbai City, Maharashtra",0,1,0,false_positive,0,0,0,,
+S1-134899433,India,Silver Anand Products Private Limited,"House No-137, Sector-4, Panchkula, Haryana",2,0,0,false_negative,0,2,0,,S2-698463242;S3-172630411

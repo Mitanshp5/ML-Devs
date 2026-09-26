@@ -242,3 +242,14 @@ def normalize_record(name_raw: str, address_raw: str, country_raw: str) -> dict:
         },
         "numbers": parse_numbers(address_raw),
     }
+
+
+def serialize_record_text(rec: dict) -> str:
+    """Format business record into a text string for neural encoding.
+    Supports both raw TSV keys ('business_name', 'business_address')
+    and text bundle keys ('name', 'address').
+    """
+    name = (rec.get("business_name") or rec.get("name") or "").strip()
+    addr = (rec.get("business_address") or rec.get("address") or "").strip()
+    country = (rec.get("country") or "").strip()
+    return f"{name} | {addr} | {country}"

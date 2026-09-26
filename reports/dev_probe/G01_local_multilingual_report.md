@@ -1,5 +1,7 @@
 # G01: Local Multilingual Neural Feature Extraction & Fusion Report
 
+> **Audit correction — 27 September 2026:** the neural-quality interpretation below is invalidated by a verified input-schema bug. The serializer reads `business_name`/`business_address`, whereas cached records contain `name`/`address`. All 500k calibration and 200k screen cosine values are exactly 1.0. This does not assess informative multilingual embeddings. Follow the [audit](F05_NEXT_ITERATION_AUDIT_2026-09-27.md) and [corrected experiment plan](../../NEXT_IMPROVEMENT_PLAN.md). Historical results are preserved; no rerun was performed by this correction.
+
 **Date:** 2026-09-27 00:19:54
 **Hardware:** Local CPU / 12 CPU threads
 **Encoder:** `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` (118M params)

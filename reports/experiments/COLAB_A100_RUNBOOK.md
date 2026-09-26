@@ -1,5 +1,7 @@
 # Optional Colab A100 experiments alongside the local workflow
 
+> **27 September 2026 update:** [the next-iteration plan](../../NEXT_IMPROVEMENT_PLAN.md) defines the active A01 corrected-embedding and A02 conditional-reranker experiments. The local G01 run encoded country-only text because of a field-name mismatch; all 700k pair cosines are 1.0. Do not reuse those embeddings/scores or treat that run as evidence against neural matching. Fix and validate serialization before export; use fresh versioned caches. The environment, transfer and data-isolation guidance below remains a reference, while the new plan controls priority and selection.
+
 **Authority:** [local-first implementation plan](../../LOCAL_COLAB_IMPLEMENTATION_PLAN.md). This replaces the old RTX 3050 assignment. This device remains the source of truth for splits, evaluation, selection and packaging. Colab is used only when a bounded GPU workload warrants it; no Mac or second PC is required.
 
 This document specifies work to implement and execute later. There is no new runnable Colab notebook or completed A100 benchmark in this revision. Do not assume the old `entity_resolution_a100.ipynb` implements the clean B0 split/candidate contract; port the shared package and parity fixture instead of adopting old notebook results.

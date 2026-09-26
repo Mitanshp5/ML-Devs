@@ -1,5 +1,7 @@
 # Local-first plan to maximize verified macro F0.5
 
+> **27 September 2026 update:** the active next-step queue is [NEXT_IMPROVEMENT_PLAN.md](NEXT_IMPROVEMENT_PLAN.md), supported by the [latest artifact audit](reports/dev_probe/F05_NEXT_ITERATION_AUDIT_2026-09-27.md). L01–L05 and a 1k L07 assessment now have reports; G01 has a verified serializer defect, and several experiment runners are empty files. The status and pending-work statements below are historical. Keep the local/optional-A100 ownership model, but follow N00–N06/A01–A02 in the new plan instead of repeating this old queue.
+
 **Updated 26 September 2026, following the user's hardware change.** All required work belongs on the current Windows/Intel Arc device. Google Colab A100 is an optional parallel execution environment for expensive neural experiments. The Mac and RTX 3050 assignments are retired. The objective remains the highest reliable end-to-end F0.5 achievable at practical cost, with no fixed 0.98 gate.
 
 This is the authoritative execution plan. The older `F05_098_IMPLEMENTATION_PLAN.md` retains the challenge contract, original audit and technical references. The separate [Colab A100 runbook](reports/experiments/COLAB_A100_RUNBOOK.md) defines the optional GPU workload and exchange format. No cloud job, upload or training was started by this plan revision.
