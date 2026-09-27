@@ -1,0 +1,119 @@
+{
+  "timestamp": "2026-09-27 09:45:47",
+  "evaluation_queries": 3500,
+  "calibration_queries": 2500,
+  "screen_queries": 1000,
+  "depth_progression": [
+    {
+      "k": "K50",
+      "max_k": 50,
+      "total_pairs": 175000,
+      "avg_cands_per_query": 50.0,
+      "true_positives_recovered": 11033,
+      "false_negatives_missed": 1001,
+      "negative_distractors": 163967,
+      "oracle_f05_all": 0.9666285342623835,
+      "oracle_f05_cal": 0.9676548907138167,
+      "oracle_f05_scr": 0.9640626431338006,
+      "queries_all_truths_found": 2616,
+      "queries_zero_truths_found": 39
+    },
+    {
+      "k": "K100",
+      "max_k": 100,
+      "total_pairs": 350000,
+      "avg_cands_per_query": 100.0,
+      "true_positives_recovered": 11319,
+      "false_negatives_missed": 715,
+      "negative_distractors": 338681,
+      "oracle_f05_all": 0.9763211840030369,
+      "oracle_f05_cal": 0.9770353368434888,
+      "oracle_f05_scr": 0.9745358019019073,
+      "queries_all_truths_found": 2775,
+      "queries_zero_truths_found": 28
+    },
+    {
+      "k": "K150",
+      "max_k": 150,
+      "total_pairs": 525000,
+      "avg_cands_per_query": 150.0,
+      "true_positives_recovered": 11402,
+      "false_negatives_missed": 632,
+      "negative_distractors": 513598,
+      "oracle_f05_all": 0.9787690149146945,
+      "oracle_f05_cal": 0.9799446277384272,
+      "oracle_f05_scr": 0.9758299828553624,
+      "queries_all_truths_found": 2839,
+      "queries_zero_truths_found": 26
+    },
+    {
+      "k": "K200",
+      "max_k": 200,
+      "total_pairs": 700000,
+      "avg_cands_per_query": 200.0,
+      "true_positives_recovered": 11451,
+      "false_negatives_missed": 583,
+      "negative_distractors": 688549,
+      "oracle_f05_all": 0.9803128756795695,
+      "oracle_f05_cal": 0.9817769251522037,
+      "oracle_f05_scr": 0.9766527519979844,
+      "queries_all_truths_found": 2872,
+      "queries_zero_truths_found": 25
+    },
+    {
+      "k": "K250",
+      "max_k": 250,
+      "total_pairs": 874999,
+      "avg_cands_per_query": 249.99971428571428,
+      "true_positives_recovered": 11506,
+      "false_negatives_missed": 528,
+      "negative_distractors": 863493,
+      "oracle_f05_all": 0.9824319242752717,
+      "oracle_f05_cal": 0.9833153396314624,
+      "oracle_f05_scr": 0.9802233858847949,
+      "queries_all_truths_found": 2910,
+      "queries_zero_truths_found": 21
+    },
+    {
+      "k": "K300",
+      "max_k": 300,
+      "total_pairs": 1044377,
+      "avg_cands_per_query": 298.39342857142856,
+      "true_positives_recovered": 11534,
+      "false_negatives_missed": 500,
+      "negative_distractors": 1032843,
+      "oracle_f05_all": 0.983337290967403,
+      "oracle_f05_cal": 0.9842713811389745,
+      "oracle_f05_scr": 0.9810020655384745,
+      "queries_all_truths_found": 2928,
+      "queries_zero_truths_found": 20
+    },
+    {
+      "k": "Untrimmed",
+      "max_k": 450,
+      "total_pairs": 1211532,
+      "avg_cands_per_query": 346.152,
+      "true_positives_recovered": 11561,
+      "false_negatives_missed": 473,
+      "negative_distractors": 1199971,
+      "oracle_f05_all": 0.9844766956803372,
+      "oracle_f05_cal": 0.984980833451368,
+      "oracle_f05_scr": 0.9832163512527602,
+      "queries_all_truths_found": 2947,
+      "queries_zero_truths_found": 18
+    }
+  ],
+  "k100_vs_k250_incremental": {
+    "delta_tp": 187,
+    "delta_fp": 524812,
+    "signal_to_noise_ratio": 0.000356318071995305,
+    "purity_pct": 0.0356318071995305,
+    "oracle_lift_all": 0.006110740272234794,
+    "oracle_lift_screen": 0.005687583982887601
+  },
+  "verdict": {
+    "retrieval_expansion_recommended": false,
+    "rationale": "Expanding from K100 to K250 in India adds only 187 true matches while flooding the candidate pool with 524,812 negative distractors (purity of only 0.04%). Because the F0.5 metric heavily penalizes false positives (weighting precision 4x higher than recall via beta=0.5), injecting 150 additional noisy candidates per query degrades the classifier precision more than it gains from the marginal recall, confirming the negative empirical delta observed in L03 (-0.000064). K100 remains the optimal operating point."
+  },
+  "execution_time_s": 15.545366764068604
+}

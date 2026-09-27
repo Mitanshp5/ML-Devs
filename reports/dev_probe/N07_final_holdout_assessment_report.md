@@ -1,5 +1,7 @@
 # N07: Final Locked Holdout Assessment Report
 
+> **Subsequent artifact audit, 27 September 2026:** the exposure reader expected `exposed_holdout_query_ids`, but the earlier ledger stores `query_ids`. Direct ID comparison found **5 previously assessed queries** in this 1,000-query sample. The observed union of both assessments is 1,995 unique queries. The original score report below is preserved, but its completely-fresh claim is corrected here. See [the post-N07 review and plan](../../POST_N07_IMPROVEMENT_PLAN.md); do not use these assessed samples for further tuning.
+
 **Date:** 2026-09-27 04:21:59
 **Hardware:** Windows / 12 CPU threads
 **Holdout Population:** 1,000 completely fresh, previously untouched queries (500 India, 500 US)

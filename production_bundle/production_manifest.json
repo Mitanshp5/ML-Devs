@@ -1,29 +1,50 @@
 {
-  "timestamp": "2026-09-27 01:39:37",
-  "model_type": "LightGBM GBDT (127 leaves, depth 9, 466 trees)",
+  "timestamp": "2026-09-27 07:42:00",
+  "pipeline": "R1 Controlled Factorial Ensemble (25k L04 + 12k L04)",
   "features_version": "FEATURES_V3",
   "n_features": 38,
-  "calibration_set": "calibration_5k (5,000 queries)",
-  "training_set": "train_12k (12,000 queries, 1.2M pairs, 39,919 matches)",
-  "verified_metrics": {
-    "screen_2k_macro_f05": 0.912044,
-    "screen_2k_india_f05": 0.884169,
-    "screen_2k_us_f05": 0.93992,
-    "delta_vs_b0_baseline": "+0.007459",
-    "delta_95_ci": [
-      0.002362,
-      0.012808
-    ]
+  "models": {
+    "primary_scaled": {
+      "filename": "production_matcher_25k.txt",
+      "sha256": "4c247004f758f427f76745a06ae6838ef45ad36cede9185826b1df322beeba14",
+      "training_set": "train_25k (25,000 queries, 2.5M pairs, 357 trees, 127 leaves, depth 9)",
+      "weight": 0.5
+    },
+    "secondary_rich": {
+      "filename": "production_matcher.txt",
+      "sha256": "62a2dba2388e8089daf84e17e86e6cdc0f3bc20fbc5ea2eace18870e80e6039c",
+      "training_set": "train_12k (12,000 queries, 1.2M pairs, 466 trees, 127 leaves, depth 9)",
+      "weight": 0.5
+    }
   },
   "artifacts_sha256": {
+    "production_matcher_25k.txt": "4c247004f758f427f76745a06ae6838ef45ad36cede9185826b1df322beeba14",
     "production_matcher.txt": "62a2dba2388e8089daf84e17e86e6cdc0f3bc20fbc5ea2eace18870e80e6039c",
     "feature_schema.json": "c5c12c96da534eb343daa2b5b2732e82ee88488b40482901601af687d3c5810c",
-    "decision_policy.json": "d9806b1a88a2af3276188e63089c3aaddebd4d833eff6f6f84190cc822e6b5f4"
+    "decision_policy.json": "23b1244b0841edfbb9c9a236afc3142126694515a39c9fe23f46faa14b7f261f"
+  },
+  "calibration_set": "calibration_5k (5,000 queries)",
+  "comparison_set": "comparison_15k (15,000 queries)",
+  "verified_metrics": {
+    "primary_25k_model_alone": {
+      "full_15k_macro_f05": 0.915749,
+      "unexposed_13k_macro_f05": 0.915879,
+      "india_15k_macro_f05": 0.894467,
+      "us_15k_macro_f05": 0.93703,
+      "delta_vs_arm1_l04": "+0.001782",
+      "paired_95_ci_vs_arm1": [
+        0.000108,
+        0.003514
+      ]
+    },
+    "calibrated_ensemble_50_50": {
+      "full_15k_macro_f05": 0.916142,
+      "calibration_f05": 0.919348,
+      "delta_vs_b0_base": "+0.006669",
+      "delta_vs_l04_base": "+0.002175"
+    }
   },
   "routing_policy": {
-    "India": "country_dual / calibrated thresholds",
-    "US": "country_dual / calibrated thresholds",
-    "France": "global fallback (ts=0.70, tm=0.70)",
-    "Other": "global fallback"
+    "global_fine": "ts=0.655, tm=0.655"
   }
 }

@@ -1,4 +1,9 @@
 {
+  "ensemble_weights": {
+    "production_matcher_25k.txt": 0.5,
+    "production_matcher.txt": 0.5
+  },
+  "selected_policy": "fine_global",
   "baseline": {
     "global": {
       "ts": 0.7,
@@ -14,25 +19,25 @@
   "fine_dual": {
     "global": {
       "ts": 0.655,
-      "tm": 0.655,
-      "calibration_f05": 0.9169786292819805
+      "tm": 0.65,
+      "calibration_f05": 0.9194315199615698
     }
   },
   "country_dual": {
     "global": {
       "ts": 0.655,
-      "tm": 0.655,
-      "calibration_f05": 0.9169786292819805
+      "tm": 0.65,
+      "calibration_f05": 0.9194315199615698
     },
     "India": {
-      "ts": 0.655,
-      "tm": 0.655,
-      "calibration_f05": 0.895436797749586
+      "ts": 0.7,
+      "tm": 0.7,
+      "calibration_f05": 0.8979168791029554
     },
     "US": {
-      "ts": 0.68,
-      "tm": 0.68,
-      "calibration_f05": 0.9391045287927698
+      "ts": 0.685,
+      "tm": 0.65,
+      "calibration_f05": 0.9416416940901896
     }
   }
 }

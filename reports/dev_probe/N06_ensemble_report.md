@@ -1,6 +1,6 @@
 # N06: Calibrated Model Combination Benchmark Report
 
-**Date:** 2026-09-27 04:12:28
+**Date:** 2026-09-27 06:21:09
 **Hardware:** Windows / 12 CPU threads
 **Selected Arm:** N03_L04_blend ($w_{N03} = 0.60$, $w_{L04} = 0.40$)
 **Comparison Population:** 15,000 queries (7,500 India, 7,500 US)
@@ -18,4 +18,4 @@
 | **N06 Calibrated Ensemble** | **Country Dual** | **0.914891** | **+0.005418** [+0.003591, +0.007280] | **+0.001345** [+0.000013, +0.002644] | **0.915228** | **0.912699** | **0.891610** | **0.938173** |
 | **N06 Calibrated Ensemble** | Baseline (0.70) | 0.914228 | +0.004755 | +0.000682 | 0.914553 | 0.912114 | 0.892557 | 0.935899 |
 
-Execution time: 101.62s.
+Execution time: 100.76s.

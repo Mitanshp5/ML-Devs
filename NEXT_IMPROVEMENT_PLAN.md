@@ -1,5 +1,7 @@
 # Next iteration: improve verified entity-macro F0.5
 
+> **Post-N07 review, 27 September 2026:** follow [POST_N07_IMPROVEMENT_PLAN.md](POST_N07_IMPROVEMENT_PLAN.md) for current status and the active local execution queue. N01/N03/N06 now have verified results; best observed N06 global-policy development score is 0.915536. Full neural matching remains unmeasured. Current production output uses training targets and covers only 498 queries with candidates; it is not completed test inference. Earlier status/priority statements below are historical, while the experiment designs remain references.
+
 **Updated 27 September 2026, against commit `7875f57`.** This is the active next-step plan, superseding the completed or outdated queue in `LOCAL_COLAB_IMPLEMENTATION_PLAN.md`. All required work stays on this Windows device. Optional Google Colab A100 work can run alongside it. The objective is higher reliable F0.5 at practical cost, with no fixed 0.98 target.
 
 This document specifies work to implement and execute next. The audit itself did not launch training, Colab, full-test inference or another holdout evaluation. Detailed supporting evidence is in [the new audit](reports/dev_probe/F05_NEXT_ITERATION_AUDIT_2026-09-27.md). Retain the challenge constraints and submission requirements in [the original implementation plan](F05_098_IMPLEMENTATION_PLAN.md).

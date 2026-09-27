@@ -1,0 +1,94 @@
+{
+  "timestamp": "2026-09-27 08:04:17",
+  "hardware": {
+    "cpu": "Intel(R) Core(TM) Ultra 9 285H",
+    "gpu": "Intel(R) Arc(TM) 140T GPU (16GB) (iGPU)",
+    "threads_limit": 12
+  },
+  "sample": {
+    "total_texts": 10000,
+    "country_distribution": {
+      "India": 5000,
+      "US": 4000,
+      "France": 1000
+    },
+    "text_length": {
+      "min": 33,
+      "mean": 92.0515,
+      "median": 86.0,
+      "max": 228
+    }
+  },
+  "device_benchmarks": {
+    "CPU": {
+      "device_full_name": "Intel(R) Core(TM) Ultra 9 285H",
+      "optimal_batch_size": 128,
+      "throughput_texts_per_s": 212.99802568086557,
+      "elapsed_s": 46.94879198074341,
+      "ms_per_text_mean": 4.699625334219087,
+      "ms_per_text_p50": 5.171427503228188,
+      "ms_per_text_p90": 6.083285808563232,
+      "ms_per_text_p95": 6.658977456390858,
+      "ms_per_text_p99": 6.984977684915065,
+      "batch_size_sweep": {
+        "128": {
+          "elapsed_s": 10.36387848854065,
+          "throughput_texts_per_s": 192.97794761019264
+        },
+        "256": {
+          "elapsed_s": 11.713489770889282,
+          "throughput_texts_per_s": 170.74330870808973
+        },
+        "512": {
+          "elapsed_s": 11.977348566055298,
+          "throughput_texts_per_s": 166.98186489021032
+        },
+        "1024": {
+          "elapsed_s": 12.445388793945312,
+          "throughput_texts_per_s": 160.70209079952576
+        }
+      },
+      "peak_rss_gb": 4.730659484863281
+    },
+    "GPU": {
+      "device_full_name": "Intel(R) Arc(TM) 140T GPU (16GB) (iGPU)",
+      "optimal_batch_size": 512,
+      "throughput_texts_per_s": 1838.9262115722859,
+      "elapsed_s": 5.437956094741821,
+      "ms_per_text_mean": 0.5421788883669412,
+      "ms_per_text_p50": 0.5569700014722698,
+      "ms_per_text_p90": 0.6975986994802952,
+      "ms_per_text_p95": 0.701494375243783,
+      "ms_per_text_p99": 0.722563611343503,
+      "batch_size_sweep": {
+        "128": {
+          "elapsed_s": 1.8628051280975342,
+          "throughput_texts_per_s": 1073.6496103822635
+        },
+        "256": {
+          "elapsed_s": 1.4402782917022705,
+          "throughput_texts_per_s": 1388.6205266873753
+        },
+        "512": {
+          "elapsed_s": 1.3791189193725586,
+          "throughput_texts_per_s": 1450.201263941703
+        },
+        "1024": {
+          "elapsed_s": 1.502375841140747,
+          "throughput_texts_per_s": 1331.2248142125404
+        }
+      },
+      "peak_rss_gb": 5.125358581542969
+    }
+  },
+  "parity": {
+    "max_vector_element_diff": 0.0005702003836631775,
+    "mean_vector_element_diff": 4.8770052671898156e-05,
+    "n_pairs_evaluated": 50000,
+    "max_pairwise_cosine_diff": 0.0009556114673614502,
+    "mean_pairwise_cosine_diff": 0.00015495961997658014,
+    "p99_pairwise_cosine_diff": 0.0005038979579694569,
+    "parity_pass": true
+  },
+  "total_benchmark_time_s": 116.0634093284607
+}
