@@ -9,6 +9,6 @@ foreach ($Path in @("student_resource/student_resource/dataset/test/test_source1
 $env:PYTHONPATH = "code/business_entity_resolution/src"
 $env:OMP_NUM_THREADS = "12"; $env:MKL_NUM_THREADS = "12"
 $env:OPENBLAS_NUM_THREADS = "12"; $env:NUMEXPR_NUM_THREADS = "12"
-& $Python -m er.run_submission_batched --country India --bundle-dir production_bundle_final --cache-dir cache/retrieval_test --dataset-dir student_resource/student_resource/dataset --output-dir output/final --batch-size 2000 --n-cores 12 --range-start 0 --range-end 404000 --resume
-if ($LASTEXITCODE -ne 0) { throw "India part 1 inference failed: $LASTEXITCODE" }
-Write-Host "India part 1 complete (queries 0:404000). Run run_india_part2_main.ps1 for the remainder, then merge." -ForegroundColor Green
+& $Python -m er.run_submission_batched --country India --bundle-dir production_bundle_final --cache-dir cache/retrieval_test --dataset-dir student_resource/student_resource/dataset --output-dir output/final --batch-size 2000 --n-cores 12 --range-start 404000 --resume
+if ($LASTEXITCODE -ne 0) { throw "India part 2 inference failed: $LASTEXITCODE" }
+Write-Host "India part 2 complete (queries 404000:end). Copy both parts' output/final/shards/*India* into one shards folder, then run merge_validate_main.ps1." -ForegroundColor Green
