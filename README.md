@@ -1,92 +1,22 @@
-# Amazon ML Challenge 2026 — Business Entity Resolution
+# Amazon ML Challenge 2026 — Final inference package
 
-Match every Source 1 business record against Source 2 + Source 3 records.
-Scored with macro-averaged **F0.5** (precision-heavy; singletons included).
-Full spec: `amazon_ml_challenge_problem_statement.pdf` + `ENTITY_RESOLUTION_PLAN.md`.
+This repository contains the final, reproducible business-entity-resolution inference path for the Amazon ML Challenge. It matches every test Source 1 entity against Source 2 and Source 3 records and writes the precision-weighted F0.5 submission files.
 
-## Repo map
+The frozen production artifact is `production_bundle_final/production_matcher_v4.txt`: a 42-feature LightGBM matcher with threshold 0.68. Its measured development comparison score was 0.917897 macro F0.5; hidden-test performance is unknown until leaderboard scoring.
 
-| Path | What |
-|---|---|
-| `ENTITY_RESOLUTION_PLAN.md` | Solution plan (data analysis, blocking, model ladder, thresholds) |
-| `notebooks/entity_resolution.ipynb` | SageMaker `ml.t3.medium` — sample-only pipeline |
-| `notebooks/entity_resolution_local.ipynb` | Windows PC (Ultra 9, 32 GB, Arc 140T) + OpenVINO inference + Drive sync |
-| `notebooks/entity_resolution_a100.ipynb` | Colab A100 — GPU ANN, fine-tuning, rerank, OpenVINO export |
-| `MACBOOK_SETUP.md` | Runbook for the MacBook shard worker (US + France test blocking): setup, cell list, handoff |
-| `student_resource/` | Challenge files (README, validator, ground truth schema). Dataset TSVs live here locally but are **gitignored** |
-| `amazon_ml_challenge_problem_statement.pdf` | Original problem statement |
+## Run inference
 
-All three notebooks share identical pipeline logic (scorer, val split,
-normalization, skeleton); only budgets and hardware stages differ.
-Each notebook's 2nd cell is a **run/skip guide** — read it first.
+The test dataset and country retrieval caches are intentionally excluded from Git. See [DISTRIBUTED_RUN_GUIDE.md](DISTRIBUTED_RUN_GUIDE.md) to run India, US and France on separate devices, resume verified checkpoints, return shards, merge and validate them.
 
-## Setup per machine
+Install the inference-only environment:
 
-| Machine | Dataset placement | Notes |
-|---|---|---|
-| Local Windows PC | Already present in repo checkout | Outputs → `notebooks/output-local/` (gitignored) |
-| Colab A100 | Drive `MyDrive/AmazonMLChallenge/dataset/` → auto-copied to `/content/dataset` by the notebook | Checkpoints/outputs stay on Drive (`output-a100/`, `checkpoints/`, `models/`) |
-| SageMaker `t3.medium` | Upload `dataset/` beside the notebook (or run on Colab — Drive cell auto-copies) | Sample mode only (4 GB RAM) |
-
-Model flow: **Colab fine-tunes → exports OpenVINO IR to Drive → local auto-pulls
-`models/minilm-ov` + raw `models/minilm-er` → Arc 140T inference.**
-Local sharing: `output-local/*.tsv` + local models sync to Drive
-`AmazonMLChallenge/shared/` (oplog: offline-first, delta resume via manifest).
-Needs Drive for Desktop running; without it the run just stays local.
-
-## Flow (Phase 0 → 5, see plan §3)
-
-```
-TSVs → normalize → validate-split + F0.5 scorer → walking skeleton (PIN block)
-     → FAISS blocking (recall ≥95% gate) → matcher (LightGBM → MiniLM → rerank)
-     → tau threshold → matching_results.tsv + candidate_pairs.tsv
-     → validate_submission.py --check-ids → submission zip + methodology doc
+```powershell
+python -m venv venv
+.\venv\Scripts\python.exe -m pip install -r code/business_entity_resolution/requirements-inference.txt
 ```
 
-## Todo
+The main-device launchers are in `scripts/distributed/`. The final leaderboard artifact is `output/final/matching_results.tsv`; `candidate_pairs.tsv` is retained for the final submission package.
 
-Done:
+## Retained source
 
-- [x] Data analysis (row counts, GT distribution, noise samples)
-- [x] Solution plan (reviewed; recall-first blocking, FAISS primary, France tables)
-- [x] F0.5 scorer + unit test vs PDF worked example (0.714)
-- [x] Hash-based val split + normalization lib + walking skeleton (code)
-- [x] Three runtime notebooks + run/skip guides + Drive dataset wiring
-- [x] Drive sharing layer (local push/pull, offline-first) + safetensors pin
-
-Next (in order — each unblocks the next):
-
-- [ ] **1. Skeleton PASS.** Run the local notebook sample pipeline to a
-  validation `PASS` + first real F0.5 number. Fixes integration bugs early.
-- [ ] **2. Full blocking + recall gate.** FAISS index over millions of docs
-  (per-country shards, chunked queries), rank-merge + adaptive cap; prove
-  ≥95% recall ceiling on val, then minimize mean K (§1.6).
-- [ ] **3. Matcher.** LightGBM baseline on pairwise features → MiniLM
-  bi-encoder fine-tune (A100) → cross-encoder rerank top-10.
-- [ ] **4. Threshold.** Tune global `tau` on val macro-F0.5 (≈0.6–0.8);
-  `max_score < tau` → empty (singleton).
-- [ ] **5. Test inference.** Chunked full-test run → `matching_results.tsv` +
-  `candidate_pairs.tsv` for all 1.73M test S1.
-- [ ] **6. Submit.** Validator `--check-ids` PASS → leaderboard upload →
-  submission zip (`output/`, runnable `code/`, methodology doc).
-
-## Upgrade track (plan §6)
-
-Implemented in batches; each box checked only with a measured val macro-F0.5 delta:
-
-- [ ] **U1 normalization:** French legal forms, dotted-variant suffixes,
-  abbreviation finders, token-signature keys, ordered cleaning rules.
-- [ ] **U2 blocking:** reference TF-IDF config in country shards,
-  `sparse_dot_topn`, Soundex backfill + freq pruning, per-key caps, eda3
-  recall-probe gate (≥95% ceiling).
-- [ ] **U3 matcher:** 7-feature base + context flags, 1:6 hard negatives,
-  GroupKFold-by-S1, LightGBM → MiniLM → rerank, `model_config.json`.
-- [ ] **U4 decision:** dual thresholds on entity-macro-F0.5, inference
-  short-circuit, scorer docstring guard.
-- [ ] **U5 ops:** `run_pipeline.py` CLI reproducibility, early/often submits.
-
-## Git rules
-
-Never committed (all gitignored): `*.tsv`, `dataset/`, `output*/`,
-`checkpoints/`, `models/`, `sync_manifest.json`, notebook execution outputs
-(stripped before commit). Commit: code, plan, docs, clean notebooks.
+`code/business_entity_resolution/src/er/` contains normalization, lexical/structured retrieval, duplicate expansion, features, cache building, inference, checkpoint verification and streaming validation. The original challenge statement and documentation template remain under the repository root and `student_resource/`.

@@ -1,6 +1,6 @@
 """Unicode-preserving, field- and country-aware normalization (F05 Phase B).
 
-P0 defects fixed vs notebooks/entity_resolution_local.ipynb cell 10:
+Normalization invariants for the final inference pipeline:
 - normalize_ascii(encode-ignore) deleted Indic names -> primary views are
   Unicode (NFKC + casefold, keep L/M/N). Latin folding is an ADDITIONAL view.
 - [^\\w\\s] removed combining marks -> we keep Unicode categories L/M/N and

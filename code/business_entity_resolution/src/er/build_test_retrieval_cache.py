@@ -1,7 +1,7 @@
 """Build distinct, fingerprinted retrieval indexes for test target entities (S2 + S3).
 
-Authority: POST_N07_IMPROVEMENT_PLAN.md Section 2 (P0-A repair)
-Hardware: Local Windows / 12 CPU threads / Memory-bounded (< 20 GB peak RSS)
+Used by the retained final inference path.
+Designed for local CPU execution with up to 12 threads.
 """
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ from scipy.sparse import save_npz
 from er.normalization import normalize_address, normalize_name
 from er.retrieval.lexical import build_vectorizer, channel_texts
 from er.retrieval.structured import build_index
-from er.run_retrieval_sweep import build_duplicate_map
+from er.retrieval.duplicates import build_duplicate_map
 
 DEFAULT_CORES = 12
 
