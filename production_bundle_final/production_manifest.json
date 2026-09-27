@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-09-27",
+  "pipeline": "R3b corrected FEATURES_V4 single-model production bundle",
+  "features_version": "FEATURES_V4",
+  "n_features": 42,
+  "models": {
+    "primary": {
+      "filename": "production_matcher_v4.txt",
+      "weight": 1.0,
+      "training_set": "25,000 queries / 2.5M pairs / 394 trees"
+    }
+  },
+  "artifacts_sha256": {
+    "production_matcher_v4.txt": "07a74fdd1233853627564d1a6d08039b5b279b382b9461ee12bb402817a3c235",
+    "feature_schema.json": "9efbe5e9de84a17e7c1f76abf233582e9cf0accd46cd9b5dee1c37661b4f3b28",
+    "decision_policy.json": "ed78728321563b8bd5474104706f6b2f8a153cb9c63c8a43288780c66df64e89"
+  },
+  "verified_metrics": {
+    "calibration_5k_macro_f05": 0.921662,
+    "comparison_15k_macro_f05": 0.917897,
+    "comparison_15k_delta_vs_arm3": 0.002003,
+    "threshold": 0.68
+  },
+  "limitations": [
+    "Full hidden test score is unknown until leaderboard evaluation.",
+    "The measured V4+Arm1 blend was invalid/unstable and is not deployed."
+  ]
+}

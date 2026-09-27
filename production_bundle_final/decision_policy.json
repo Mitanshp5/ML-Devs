@@ -1,0 +1,13 @@
+{
+  "selected_policy": "fine_global",
+  "fine_global": {
+    "global": {
+      "ts": 0.68,
+      "tm": 0.68
+    }
+  },
+  "ensemble_weights": {
+    "production_matcher_v4.txt": 1.0
+  },
+  "selection_basis": "Corrected R3b full-refit V4; calibration_5k fine_global; comparison_15k single-model F0.5=0.917897. Do not blend invalid positional ensembles."
+}

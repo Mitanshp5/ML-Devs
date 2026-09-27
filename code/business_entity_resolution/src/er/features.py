@@ -13,6 +13,7 @@ diagnostic, must not be the transfer signal.
 from __future__ import annotations
 
 import re
+import unicodedata
 
 import numpy as np
 from rapidfuzz import fuzz
@@ -139,6 +140,27 @@ FEATURES_V3 = [
     "addr_empty_either",
     "pin_present_both",
 ]
+
+FEATURES_V4 = FEATURES_V3 + [
+    "name_match_addr_missing", "strict_house_number_conflict",
+    "script_mismatch_high_addr", "same_pin_diff_name_samescript",
+]
+
+def _has_nonlatin(text: str) -> bool:
+    for ch in str(text):
+        if unicodedata.category(ch).startswith("L") and "LATIN" not in unicodedata.name(ch, ""):
+            return True
+    return False
+
+def pair_feature_row_v4(q: dict, t: dict, chmap: dict, rrf: float, rank: int,
+                        top1_rrf: float, top2_rrf: float, src_is_s2: bool) -> list:
+    """Production FEATURES_V4 row; formulas are pinned to R3b training."""
+    base = pair_feature_row_v3(q, t, chmap, rrf, rank, top1_rrf, top2_rrf, src_is_s2)
+    name_match_addr_missing = float((base[11] >= .85 or base[9] >= .90) and base[36] == 1.0)
+    strict_house_number_conflict = float(base[23] == 1.0 and (base[11] >= .65 or base[17] >= .75))
+    script_mismatch_high_addr = float(_has_nonlatin(q.get("name_unicode", "")) != _has_nonlatin(t.get("name_unicode", "")) and base[17] >= .70)
+    same_pin_diff_name_samescript = float(base[26] == 1.0 and base[11] < .35 and (_has_nonlatin(q.get("name_unicode", "")) == _has_nonlatin(t.get("name_unicode", ""))))
+    return base + [name_match_addr_missing, strict_house_number_conflict, script_mismatch_high_addr, same_pin_diff_name_samescript]
 
 
 def pair_feature_row_v3(
