@@ -10,6 +10,8 @@ The work is split by country. Each device creates independent checkpoints, so an
 
 The GPU is not required. Retrieval and feature construction mainly use CPU, RAM, and disk.
 
+Use **Python 3.11** on both helper devices to match the model/cache environment and Unicode normalization. Check with `python --version` on Windows or `python3.11 --version` on macOS before creating the virtual environment.
+
 ## Files to send each helper
 
 Send each helper their shared Google Drive country folder, `test_source1.tsv`, and this repository URL:
@@ -63,7 +65,7 @@ Continue in PowerShell:
 ```powershell
 python -m venv venv
 .\venv\Scripts\python.exe -m pip install --upgrade pip
-.\venv\Scripts\python.exe -m pip install -r code/business_entity_resolution/requirements.txt
+.\venv\Scripts\python.exe -m pip install -r code/business_entity_resolution/requirements-inference.txt
 powershell -ExecutionPolicy Bypass -File scripts/distributed/run_us_rtx3050.ps1
 ```
 
@@ -101,9 +103,9 @@ ML-Devs/student_resource/student_resource/dataset/test/test_source1.tsv
 Continue in Terminal:
 
 ```bash
-python3 -m venv venv
+python3.11 -m venv venv
 venv/bin/python -m pip install --upgrade pip
-venv/bin/python -m pip install -r code/business_entity_resolution/requirements.txt
+venv/bin/python -m pip install -r code/business_entity_resolution/requirements-inference.txt
 bash scripts/distributed/run_france_m4.sh
 ```
 
@@ -152,3 +154,21 @@ The merge stops if any expected checkpoint is missing. After validation succeeds
 - `No module named ...`: recreate the virtual environment and reinstall the requirements.
 - The laptop slept or the process stopped: rerun the same country launcher to resume.
 - Merge reports an incomplete shard: the country is unfinished or one of the three files for a batch was not copied back.
+
+## Optimized runner update
+
+Before the next run, each device should pull the latest code and install the inference-specific dependencies above. All devices must use the same final bundle, code revision, original `test_source1.tsv`, and pinned numerical-library versions. Do not edit the TSV or convert its line endings.
+
+The launch commands stay the same. India uses 12 CPU threads and RAM-backed sparse matrices; US uses 12 threads and memory-mapped sparse arrays; France uses 8 threads and RAM-backed matrices. No inference starts when you pull or install dependencies.
+
+The US machine needs approximately **5.8 GiB additional free disk space** for prepared sparse arrays under `cache/retrieval_test/prepared_csc/`, plus room for the output shards. These prepared files stay local; do not upload them to Drive. Their first creation takes extra startup time. Memory mapping lets the OS reclaim matrix pages, but the record dictionaries and other indexes still require RAM. End-to-end memory use on the helpers has not been measured here.
+
+Feature generation uses small blocks inside each 2,000-query checkpoint batch. Normalized records are released between blocks. Each new checkpoint records the model/input/configuration identity, exact query-range identity, output hashes, and counts. Resume verifies these before skipping work.
+
+Older checkpoints without this identity information cannot prove which configuration created them. When their country is rerun, the runner preserves those old files in `output/final/shards/legacy/` and recomputes them. **Do not send the legacy directory back.** Send only the new top-level country shard files. If you already sent older results, rerun the updated country launcher and send the replacement files.
+
+Do not change a country's checkpoint batch size in the same output directory. Different countries may use different batch sizes; the updated merger reads and checks their recorded ranges. A model, input, or feature-code mismatch intentionally stops resume. Use a separate output directory for a different experiment.
+
+The merge script now uses streaming validation: every row and target ID is checked without retaining all candidate lists in RAM. It fails on missing target TSVs, duplicate rows/IDs, nonexistent targets, or matches outside the candidate set. The main device still needs all three test source TSVs for this final check; helpers only need `test_source1.tsv` for inference.
+
+The terminal prints per-batch elapsed time and a provisional remaining-time estimate based on recent completed batches. The earlier multi-hour estimates were not full-run benchmarks. Keep the laptop plugged in and disable automatic sleep while you run your assigned launcher.

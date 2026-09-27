@@ -331,7 +331,8 @@ def main() -> None:
     # must use every declared training query.
     best_iteration = int(bst_v4.best_iteration or lgb_params["n_estimators"])
     dfull = lgb.Dataset(X_train_25k_v4, label=y_train_25k, feature_name=FEATURES_V4, free_raw_data=False)
-    bst_v4 = lgb.train(lgb_params, dfull, num_boost_round=best_iteration)
+    refit_params = {k: v for k, v in lgb_params.items() if k != 'n_estimators'}
+    bst_v4 = lgb.train(refit_params, dfull, num_boost_round=best_iteration)
     print(f"Refit V4 on all {len(y_train_25k):,} pairs using {best_iteration} trees", flush=True)
 
     model_path = out_dir / "matcher_v4_25k.txt"
@@ -369,9 +370,9 @@ def main() -> None:
     prep_cmp_v4 = prepare(df_cmp_v4, comp_truth, comp_records)
     sc_cmp, _, _ = apply_policy(prep_cmp_v4, pol_fg)
 
-    is_screen = np.array([q in scr_set for q in comp_qids])
+    is_screen = np.array([q in scr_set for q in prep_cmp_v4['ids']])
     is_unexposed = ~is_screen
-    c_arr = np.array([comp_records[q]["country"] for q in comp_qids])
+    c_arr = prep_cmp_v4['country']
 
     f05_15k = float(sc_cmp.mean())
     f05_scr = float(sc_cmp[is_screen].mean())
@@ -404,7 +405,7 @@ def main() -> None:
 
     # Blend V4 (25k) + Arm 1 (12k)
     p_ens_v4 = 0.5 * p_cmp_v4 + 0.5 * p_arm1
-    df_ens_v4 = df_comp_template.copy()
+    df_ens_v4 = df_cmp_v4.copy()
     df_ens_v4["probability"] = p_ens_v4
     prep_ens_v4 = prepare(df_ens_v4, comp_truth, comp_records)
     sc_ens_v4, _, _ = apply_policy(prep_ens_v4, {"global": {"ts": 0.655, "tm": 0.655}})
@@ -417,8 +418,10 @@ def main() -> None:
     print(f"Ensemble (50% V4 25k + 50% Arm 1 12k): 15k F0.5 = {f05_ens_v4:.6f} (IN: {f05_ens_in:.6f}, US: {f05_ens_us:.6f}, Unexp: {f05_ens_unexp:.6f})", flush=True)
 
     # Delta vs Current Champion Ensemble (50% Arm 3 + 50% Arm 1: 0.916142)
+    if not df_arm3[key_cols].equals(df_arm1[key_cols]):
+        raise RuntimeError('Arm3 and Arm1 comparison keys are not identically ordered')
     p_champ_ref = 0.5 * df_arm3["probability"].to_numpy() + 0.5 * p_arm1
-    df_champ_ref = df_comp_template.copy()
+    df_champ_ref = df_arm3.copy()
     df_champ_ref["probability"] = p_champ_ref
     prep_champ_ref = prepare(df_champ_ref, comp_truth, comp_records)
     sc_champ_ref, _, _ = apply_policy(prep_champ_ref, {"global": {"ts": 0.655, "tm": 0.655}})

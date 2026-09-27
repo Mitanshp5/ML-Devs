@@ -1,0 +1,10 @@
+# Versions used by the frozen inference bundle and serialized retrieval indexes.
+# No FAISS, neural runtime, or GPU dependency is needed by this inference path.
+numpy==2.4.6
+pandas==3.0.6
+scipy==1.17.1
+scikit-learn==1.9.1
+lightgbm==4.7.0
+joblib==1.6.0
+rapidfuzz==3.14.6
+sparse-dot-topn==1.2.0

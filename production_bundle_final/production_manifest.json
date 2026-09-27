@@ -7,7 +7,10 @@
     "primary": {
       "filename": "production_matcher_v4.txt",
       "weight": 1.0,
-      "training_set": "25,000 queries / 2.5M pairs / 394 trees"
+      "training_set": "25,000 queries / 2.5M pairs / 400 trees",
+      "actual_trees": 400,
+      "selected_inner_validation_iteration": 394,
+      "refit_note": "The frozen measured model contains 400 trees because n_estimators overrode num_boost_round. Metadata corrected without changing the model. The trainer now removes that alias for future refits."
     }
   },
   "artifacts_sha256": {

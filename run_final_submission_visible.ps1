@@ -30,11 +30,10 @@ Write-Host "`n=== Merging completed shards ===" -ForegroundColor Cyan
 if ($LASTEXITCODE -ne 0) { throw "Shard merge failed with exit code $LASTEXITCODE" }
 
 Write-Host "`n=== Validating final submission files ===" -ForegroundColor Cyan
-& $PythonExe student_resource/student_resource/utils/validate_submission.py `
+& $PythonExe -m er.validate_submission_streaming `
     --matching output/final/matching_results.tsv `
     --candidate output/final/candidate_pairs.tsv `
-    --test-dir student_resource/student_resource/dataset/test `
-    --check-ids
+    --test-dir student_resource/student_resource/dataset/test
 if ($LASTEXITCODE -ne 0) { throw "Submission validation failed with exit code $LASTEXITCODE" }
 
 Write-Host "`nFULL INFERENCE AND VALIDATION COMPLETE" -ForegroundColor Green

@@ -2,7 +2,7 @@ $ErrorActionPreference = "Stop"
 $Root = (Resolve-Path (Join-Path $PSScriptRoot "../..")).Path
 Set-Location $Root
 $Python = Join-Path $Root "venv/Scripts/python.exe"
-if (-not (Test-Path $Python)) { throw "Missing venv. Create it and install code/business_entity_resolution/requirements.txt" }
+if (-not (Test-Path $Python)) { throw "Missing venv. Create it and install code/business_entity_resolution/requirements-inference.txt" }
 foreach ($Path in @("student_resource/student_resource/dataset/test/test_source1.tsv", "cache/retrieval_test/pool_dict_India.joblib", "production_bundle_final/production_matcher_v4.txt")) {
     if (-not (Test-Path $Path)) { throw "Missing required local artifact: $Path" }
 }
